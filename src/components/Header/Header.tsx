@@ -7,7 +7,9 @@ function Header() {
   return (
     <>
       <header className={styles.header}>
-        <h1>SHOPPIT</h1>
+        <Link className={styles.logo} to={"/"}>
+          SHOPPIT
+        </Link>
         <div className={styles["link-container"]}>
           <Link className={styles.link} to='/'>
             Home

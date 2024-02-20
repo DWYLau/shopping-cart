@@ -6,6 +6,14 @@ import model3 from "../../assets/images/model3.jpg"
 import model4 from "../../assets/images/model4.jpg"
 import model5 from "../../assets/images/model5.jpg"
 import model6 from "../../assets/images/model6.jpg"
+import facebook from "../../assets/icons/facebook.svg"
+import instagram from "../../assets/icons/instagram.svg"
+import snapchat from "../../assets/icons/snapchat.svg"
+import line from "../../assets/icons/line.svg"
+import visa from "../../assets/icons/visa.svg"
+import americanexpress from "../../assets/icons/americanexpress.svg"
+import googlewallet from "../../assets/icons/googlewallet.svg"
+import jcb from "../../assets/icons/jcb.svg"
 import { Link } from "react-router-dom"
 
 function Home() {
@@ -43,17 +51,41 @@ function Home() {
           <img src={model5} alt='Model' />
           <h2>Classical</h2>
           <Link to='products'>
-            <button>Products</button>
+            <button className={styles.button}>Products</button>
           </Link>
         </div>
         <div className={styles["model-container2"]}>
           <img src={model6} alt='Model' />
           <h2>Contemporary</h2>
           <Link to='products'>
-            <button>Products</button>
+            <button className={styles.button}>Products</button>
           </Link>
         </div>
       </div>
+      <div className={styles.banner}>Latest Fashion Trends! Get them here!</div>
+      <div className={styles["flex-container2"]}>
+        <div className={styles["social-media"]}>
+          <a href='https://www.facebook.com/' target='_blank'>
+            <img src={facebook} alt='Facebook' />
+          </a>
+          <a href='https://www.instagram.com/' target='_blank'>
+            <img src={instagram} alt='Instagram' />
+          </a>
+          <a href='https://www.snapchat.com/'>
+            <img src={snapchat} alt='Snapchat' />
+          </a>
+          <a href='https://line.me/en/'>
+            <img src={line} alt='Line' />
+          </a>
+        </div>
+        <div className={styles["payment-method"]}>
+          <img src={visa} alt='Visa' />
+          <img src={americanexpress} alt='American Express' />
+          <img src={googlewallet} alt='Google Wallet' />
+          <img src={jcb} alt='JCB' />
+        </div>
+      </div>
+      <footer className={styles.footer}>© 2024 DL</footer>
     </section>
   )
 }
