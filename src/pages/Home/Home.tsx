@@ -4,6 +4,9 @@ import model1 from "../../assets/images/model1.jpg"
 import model2 from "../../assets/images/model2.jpg"
 import model3 from "../../assets/images/model3.jpg"
 import model4 from "../../assets/images/model4.jpg"
+import model5 from "../../assets/images/model5.jpg"
+import model6 from "../../assets/images/model6.jpg"
+import { Link } from "react-router-dom"
 
 function Home() {
   return (
@@ -34,7 +37,23 @@ function Home() {
           <h2>Formal Fashion</h2>
         </div>
       </div>
-      <div className={styles.banner}>Special Spring Sale!</div>
+      <div className={styles["second-banner"]}>Special Spring Sale!</div>
+      <div className={styles["flex-container"]}>
+        <div className={styles["model-container2"]}>
+          <img src={model5} alt='Model' />
+          <h2>Classical</h2>
+          <Link to='products'>
+            <button>Products</button>
+          </Link>
+        </div>
+        <div className={styles["model-container2"]}>
+          <img src={model6} alt='Model' />
+          <h2>Contemporary</h2>
+          <Link to='products'>
+            <button>Products</button>
+          </Link>
+        </div>
+      </div>
     </section>
   )
 }

@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,100..900&display=swap");
 
 body {
-  overflow-x: hidden; /* Hide scrollbars */
+  overflow-x: hidden;
 }
 
 .banner {
@@ -11,7 +11,21 @@ body {
   width: 100%;
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 600;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.second-banner {
+  margin-top: 3rem;
+  background: rgb(148, 71, 255);
+  color: white;
+  padding: 3rem 0;
+  width: 100%;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
   font-style: italic;
   font-size: 3rem;
   text-align: center;
@@ -53,6 +67,39 @@ body {
 }
 
 .card img {
-  height: 400px;
-  width: 270px;
+  height: 50vh;
+  width: 16vw;
+}
+
+.flex-container {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.model-container2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.model-container2 img {
+  height: 70vh;
+  border-top: 0.8rem solid rgb(148, 71, 255);
+  border-left: 0.8rem solid #ff3b30;
+  border-right: 0.8rem solid #ccff00;
+  border-bottom: 0.8rem solid #0770cf;
+}
+
+.model-container2 h2 {
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-size: 1.3rem;
+  font-style: none;
 }
