@@ -1,0 +1,37 @@
+.flex-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 1.5rem;
+  row-gap: 1rem;
+  margin-left: 1rem;
+  margin-top: 3rem;
+  align-items: center;
+  justify-items: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 47vh;
+  width: 100%;
+  background-color: #e5e4e2;
+  border: 1px solid #dcdcdc;
+  border-radius: 20px;
+}
+
+.image {
+  background-color: #dcdcdc;
+  padding: 1.1rem;
+  height: 30vh;
+  width: 14vw;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
