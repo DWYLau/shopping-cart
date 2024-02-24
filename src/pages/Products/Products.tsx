@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { fetchData } from "../../utils/api"
 import Sidebar from "../../components/Sidebar/Sidebar"
 import styles from "./Products.module.css"
+import star from "../../assets/icons/star.png"
+import like from "../../assets/icons/like.png"
 
 function Products() {
   const [products, setProducts] = useState<any>([])
@@ -32,12 +34,23 @@ function Products() {
               <div className={styles.card}>
                 <img className={styles.image} src={product.image} alt='' />
                 <h3>{product.title}</h3>
-                <div>
-                  <h3>{product.rating.rate}</h3>
-                  <h3>{product.rating.count}</h3>
+                <div className={styles["rating-container"]}>
+                  <div className={styles.rating}>
+                    <img className={styles.icon} src={star} alt='Rating' />
+                    <h3>{product.rating.rate}</h3>
+                  </div>
+
+                  <div className={styles.likes}>
+                    <img className={styles.icon} src={like} alt='Likes' />
+                    <h3>{product.rating.count}</h3>
+                  </div>
+
+                  <h3>£{product.price}</h3>
                 </div>
 
-                <h3>{product.price}</h3>
+                <div className={styles["button-container"]}>
+                  <button>Add To Cart</button>
+                </div>
               </div>
             )
           })}
