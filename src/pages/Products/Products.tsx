@@ -4,23 +4,41 @@ import Sidebar from "../../components/Sidebar/Sidebar"
 import styles from "./Products.module.css"
 import star from "../../assets/icons/star.png"
 import like from "../../assets/icons/like.png"
+import { Product } from "../../utils/types"
 
 function Products() {
-  const [products, setProducts] = useState<any>([])
+  const [products, setProducts] = useState<Product[]>([])
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [quantity, setQuantity] = useState(0)
+  const [cart, setCart] = useState<Product[]>([])
+
+  function handleQuantity(event: React.ChangeEvent<HTMLInputElement>): void {
+    const newValue: number = parseInt(event.target.value, 10)
+    setQuantity(newValue)
+  }
+
+  function addCart(product: Product) {
+    if (quantity > 0) {
+      product.number = quantity
+      product.total = product.number * product.price
+      setCart(prevProducts => [...prevProducts, product])
+      console.log(cart)
+    } else {
+      return
+    }
+  }
 
   useEffect(() => {
-    {
-      fetchData()
-        .then(data => {
-          setProducts(data)
-          console.log(data)
-        })
-        .catch(error => setError(error))
-        .finally(() => setLoading(false))
-    }
-  }, [])
+    fetchData()
+      .then(data => {
+        setProducts(data)
+      })
+      .catch(error => setError(error))
+      .finally(() => setLoading(false))
+    console.log(error)
+    console.log(cart)
+  }, [error, cart])
 
   if (loading) return <div>Loading</div>
 
@@ -49,7 +67,19 @@ function Products() {
                 </div>
 
                 <div className={styles["button-container"]}>
-                  <button>Add To Cart</button>
+                  <input
+                    onChange={handleQuantity}
+                    type='number'
+                    min={0}
+                    max={100}
+                    defaultValue={0}
+                  />
+                  <button
+                    onClick={() => addCart(product)}
+                    className={styles["cart-button"]}
+                  >
+                    Add To Cart
+                  </button>
                 </div>
               </div>
             )
