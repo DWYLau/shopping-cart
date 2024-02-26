@@ -106,6 +106,7 @@ section {
   display: block;
 }
 body {
+  width: 100vw;
   line-height: 1;
 }
 ol,

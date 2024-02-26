@@ -2,10 +2,10 @@ import { Link } from "react-router-dom"
 import styles from "./Header.module.css"
 import Search from "../../assets/icons/search.svg"
 import Shopping from "../../assets/icons/shopping-bag.svg"
-import { useState } from "react"
+import { useSearch } from "../context/SearchContext"
 
 function Header() {
-  const [searchValue, setSearchValue] = useState("")
+  const { searchValue, setSearchValue } = useSearch()
 
   function handleSearch(event: React.ChangeEvent<HTMLInputElement>): void {
     setSearchValue(event.target.value)
@@ -30,7 +30,7 @@ function Header() {
             className={styles.input}
             type='search'
             placeholder='Search for items'
-            value={searchValue}
+            value={searchValue ?? ""}
             onChange={handleSearch}
           />
           <img className={styles["search-icon"]} src={Search} />
