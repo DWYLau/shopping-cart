@@ -73,6 +73,7 @@ function Products() {
                     min={0}
                     max={100}
                     defaultValue={0}
+                    className={styles["input-number"]}
                   />
                   <button
                     onClick={() => addCart(product)}
