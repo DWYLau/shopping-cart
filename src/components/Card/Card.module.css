@@ -1,0 +1,84 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  min-height: 52vh;
+  width: 85%;
+  background-color: #f8f8f4;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+}
+
+.card h3 {
+  text-align: center;
+  width: 70%;
+  font-family: system-ui, sans-serif;
+  font-size: 1.1rem;
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+.image {
+  background-color: white;
+  padding: 1rem;
+  height: 25vh;
+  width: 10vw;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.rating-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.rating,
+.likes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.icon {
+  height: 1rem;
+}
+
+.button-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: 2rem;
+}
+
+.cart-button {
+  cursor: pointer;
+  padding: 0.7rem;
+  font-family: system-ui, sans-serif;
+  font-weight: bold;
+  line-height: 1.1;
+  border: 2px solid #f8f8f4;
+  border-radius: 8px;
+  background-color: #ccff00;
+  min-height: 100%;
+}
+
+.cart-button:hover {
+  border: 2px solid #5f9ea0;
+}
+
+.input-number {
+  border: none;
+  background-color: #d3d3d3;
+  border: 2px solid #f8f8f4;
+  border-radius: 8px;
+  font-size: 1rem;
+  padding: 0.4rem;
+  min-height: 100%;
+  width: 23%;
+}
+
+.input-number:hover {
+  border: 2px solid #5f9ea0;
+  background-color: #b2beb5;
+}
