@@ -11,17 +11,21 @@ function Header() {
     setSearchValue(event.target.value)
   }
 
+  function resetSearch() {
+    setSearchValue("")
+  }
+
   return (
     <>
       <header className={styles.header}>
-        <Link className={styles.logo} to={"/"}>
+        <Link onClick={resetSearch} className={styles.logo} to={"/"}>
           SHOPPIT
         </Link>
         <div className={styles["link-container"]}>
-          <Link className={styles.link} to='/'>
+          <Link onClick={resetSearch} className={styles.link} to='/'>
             Home
           </Link>
-          <Link className={styles.link} to='products'>
+          <Link onClick={resetSearch} className={styles.link} to='products'>
             Products
           </Link>
         </div>
@@ -35,7 +39,7 @@ function Header() {
           />
           <img className={styles["search-icon"]} src={Search} />
         </div>
-        <Link to='cart'>
+        <Link onClick={resetSearch} to='cart'>
           <img
             className={styles["shopping-icon"]}
             src={Shopping}

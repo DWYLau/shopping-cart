@@ -5,18 +5,20 @@ type SearchContextType = {
   setSearchValue: React.Dispatch<React.SetStateAction<string | null>>
 }
 
+type SearchProviderProps = {
+  children: ReactNode
+}
+
 const SearchContext = createContext<SearchContextType>({
   searchValue: "",
   setSearchValue: () => {},
 })
 
-const useSearch = (): SearchContextType => useContext(SearchContext)
-
-type SearchProviderProps = {
-  children: ReactNode
+function useSearch(): SearchContextType {
+  return useContext(SearchContext)
 }
 
-const SearchProvider: React.FC<SearchProviderProps> = ({ children }) => {
+function SearchProvider({ children }: SearchProviderProps): JSX.Element {
   const [searchValue, setSearchValue] = useState<string | null>("")
 
   return (

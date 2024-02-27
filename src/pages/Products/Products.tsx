@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { fetchData } from "../../utils/api"
 import Sidebar from "../../components/Sidebar/Sidebar"
 import Card from "../../components/Card/Card"
@@ -13,8 +13,13 @@ function Products() {
   const [quantity, setQuantity] = useState(0)
   const [cart, setCart] = useState<Product[]>([])
   const [searching, setSearching] = useState(false)
+  const [categorized, setCategorized] = useState(false)
   const [searchedProducts, setSearchedProducts] = useState<Product[]>([])
+  const [categorizedProducts, setCategorizedProducts] = useState<Product[]>([])
+  const [category, setCategory] = useState<string | null>("")
   const { searchValue } = useSearch()
+
+  const categorizedProductsRef = useRef<Product[]>([])
 
   function handleQuantity(event: React.ChangeEvent<HTMLInputElement>): void {
     const newValue: number = parseInt(event.target.value, 10)
@@ -32,13 +37,37 @@ function Products() {
     }
   }
 
+  function getCategory(value: string) {
+    setCategory(value)
+  }
+
   useEffect(() => {
     function handleSearch() {
-      if (searchValue) {
+      if (searchValue && !categorized && products) {
         const filteredProducts = products.filter(product =>
           product.title.toLowerCase().startsWith(searchValue.toLowerCase())
         )
         setSearchedProducts(filteredProducts)
+      } else if (searchValue && categorized) {
+        const filteredProducts = categorizedProductsRef.current.filter(
+          product =>
+            product.title.toLowerCase().startsWith(searchValue.toLowerCase())
+        )
+        setSearchedProducts(filteredProducts)
+      }
+    }
+
+    function handleCategory() {
+      if (category && products) {
+        const filteredProducts = products.filter(
+          product => product.category === category
+        )
+        categorizedProductsRef.current = filteredProducts
+        setCategorizedProducts(filteredProducts)
+        setCategorized(true)
+      } else {
+        categorizedProductsRef.current = []
+        setCategorized(false)
       }
     }
 
@@ -50,39 +79,55 @@ function Products() {
         .catch(error => setError(error))
         .finally(() => setLoading(false))
     }
+
     if (searchValue != "") {
       setSearching(true)
       handleSearch()
     } else {
       setSearching(false)
     }
-  }, [error, cart, searching, searchValue, products])
+
+    if (category != "") {
+      setCategorized(true)
+      handleCategory()
+    } else {
+      setCategorized(false)
+    }
+  }, [error, cart, searching, searchValue, products, category, categorized])
 
   if (loading) return <div>Loading</div>
 
-  if (searching) {
+  if (searching || categorized) {
     return (
       <section className={styles["flex-container"]}>
-        <Sidebar />
+        <Sidebar getCategory={getCategory} />
         <div className={styles["grid-container"]}>
-          {searchedProducts.map(product => {
-            return (
-              <Card
-                product={product}
-                handleQuantity={handleQuantity}
-                addCart={addCart}
-              />
-            )
-          })}
+          {searching
+            ? searchedProducts.map(product => (
+                <Card
+                  key={product.id}
+                  product={product}
+                  handleQuantity={handleQuantity}
+                  addCart={addCart}
+                />
+              ))
+            : categorizedProducts.map(product => (
+                <Card
+                  key={product.id}
+                  product={product}
+                  handleQuantity={handleQuantity}
+                  addCart={addCart}
+                />
+              ))}
         </div>
       </section>
     )
   }
 
-  if (!loading && products && !searching)
+  if (!loading && products && !searching && !categorized)
     return (
       <section className={styles["flex-container"]}>
-        <Sidebar />
+        <Sidebar getCategory={getCategory} />
         <div className={styles["grid-container"]}>
           {products.map(product => {
             return (

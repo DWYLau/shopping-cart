@@ -1,11 +1,25 @@
 import { useState } from "react"
 import styles from "./Sidebar.module.css"
+import { useSearch } from "../context/SearchContext"
 
-function Sidebar() {
+interface Props {
+  getCategory: (value: string) => void
+}
+
+function Sidebar({ getCategory }: Props) {
   const [category, setCategory] = useState("")
+  const { setSearchValue } = useSearch()
 
   function handleCheck(event: React.ChangeEvent<HTMLInputElement>): void {
     setCategory(event.target.value.toLowerCase())
+    getCategory(event.target.value.toLowerCase())
+    setSearchValue("")
+  }
+
+  function handleReset() {
+    setCategory("")
+    getCategory("")
+    setSearchValue("")
   }
 
   return (
@@ -51,6 +65,7 @@ function Sidebar() {
         />
         Electronics
       </label>
+      <button onClick={handleReset}>Reset</button>
     </div>
   )
 }
