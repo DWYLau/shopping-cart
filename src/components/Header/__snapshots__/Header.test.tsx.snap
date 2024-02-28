@@ -1,0 +1,69 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Header component > renders correctly 1`] = `
+<div>
+  <header
+    class="_header_63c2ea"
+  >
+    <a
+      class="_logo_63c2ea"
+      href="/"
+    >
+      SHOPPIT
+    </a>
+    <div
+      class="_link-container_63c2ea"
+    >
+      <a
+        class="_link_63c2ea"
+        href="/"
+      >
+        Home
+      </a>
+      <a
+        class="_link_63c2ea"
+        href="/products"
+      >
+        Products
+      </a>
+    </div>
+    <div
+      class="_search-field_63c2ea"
+    >
+      <input
+        class="_input_63c2ea"
+        placeholder="Search for items"
+        type="search"
+        value=""
+      />
+      <img
+        class="_search-icon_63c2ea"
+        src="/src/assets/icons/search.svg"
+      />
+    </div>
+    <a
+      href="/cart"
+    >
+      <img
+        alt="Shopping Bag"
+        class="_shopping-icon_63c2ea"
+        src="/src/assets/icons/shopping-bag.svg"
+      />
+    </a>
+  </header>
+  <header
+    class="_second-header_63c2ea"
+  >
+    <div
+      class="_banner_63c2ea"
+    >
+      50% Global Discount
+    </div>
+    <div
+      class="_banner_63c2ea"
+    >
+      Free Worldwide Delivery
+    </div>
+  </header>
+</div>
+`;
