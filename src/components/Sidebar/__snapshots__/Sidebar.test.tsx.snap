@@ -1,0 +1,111 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Sidebar component > renders correctly 1`] = `
+<div>
+  <div
+    class="_flex-container_0bec62"
+  >
+    <h2>
+      Category
+    </h2>
+    <label
+      class="_label_0bec62"
+    >
+      <input
+        name="mens-clothes"
+        type="checkbox"
+        value="Men's Clothing"
+      />
+      Men's Clothing
+    </label>
+    <label
+      class="_label_0bec62"
+    >
+      <input
+        name="women-clothes"
+        type="checkbox"
+        value="Women's Clothing"
+      />
+      Women's Clothing
+    </label>
+    <label
+      class="_label_0bec62"
+    >
+      <input
+        name="jewelery"
+        type="checkbox"
+        value="Jewelery"
+      />
+      Jewelery
+    </label>
+    <label
+      class="_label_0bec62"
+    >
+      <input
+        name="electronics"
+        type="checkbox"
+        value="Electronics"
+      />
+      Electronics
+    </label>
+    <button>
+      Reset
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Sidebar component > renders men's clothing category 1`] = `
+<div>
+  <div
+    class="_flex-container_0bec62"
+  >
+    <h2>
+      Category
+    </h2>
+    <label
+      class="_label_0bec62"
+    >
+      <input
+        name="mens-clothes"
+        type="checkbox"
+        value="Men's Clothing"
+      />
+      Men's Clothing
+    </label>
+    <label
+      class="_label_0bec62"
+    >
+      <input
+        name="women-clothes"
+        type="checkbox"
+        value="Women's Clothing"
+      />
+      Women's Clothing
+    </label>
+    <label
+      class="_label_0bec62"
+    >
+      <input
+        name="jewelery"
+        type="checkbox"
+        value="Jewelery"
+      />
+      Jewelery
+    </label>
+    <label
+      class="_label_0bec62"
+    >
+      <input
+        name="electronics"
+        type="checkbox"
+        value="Electronics"
+      />
+      Electronics
+    </label>
+    <button>
+      Reset
+    </button>
+  </div>
+</div>
+`;
