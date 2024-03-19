@@ -27,8 +27,8 @@ function Sidebar({ getCategory }: Props) {
       <h2>Category</h2>
       <label className={styles.label}>
         <input
-          type='checkbox'
-          name='mens-clothes'
+          type="checkbox"
+          name="mens-clothes"
           value="Men's Clothing"
           onChange={handleCheck}
           checked={category === "men's clothing"}
@@ -37,8 +37,8 @@ function Sidebar({ getCategory }: Props) {
       </label>
       <label className={styles.label}>
         <input
-          type='checkbox'
-          name='women-clothes'
+          type="checkbox"
+          name="women-clothes"
           value="Women's Clothing"
           onChange={handleCheck}
           checked={category === "women's clothing"}
@@ -47,9 +47,9 @@ function Sidebar({ getCategory }: Props) {
       </label>
       <label className={styles.label}>
         <input
-          type='checkbox'
-          name='jewelery'
-          value='Jewelery'
+          type="checkbox"
+          name="jewelery"
+          value="Jewelery"
           onChange={handleCheck}
           checked={category === "jewelery"}
         />
@@ -57,9 +57,9 @@ function Sidebar({ getCategory }: Props) {
       </label>
       <label className={styles.label}>
         <input
-          type='checkbox'
-          name='electronics'
-          value='Electronics'
+          type="checkbox"
+          name="electronics"
+          value="Electronics"
           onChange={handleCheck}
           checked={category === "electronics"}
         />

@@ -22,28 +22,28 @@ function Header() {
           SHOPPIT
         </Link>
         <div className={styles["link-container"]}>
-          <Link onClick={resetSearch} className={styles.link} to='/'>
+          <Link onClick={resetSearch} className={styles.link} to="/">
             Home
           </Link>
-          <Link onClick={resetSearch} className={styles.link} to='products'>
+          <Link onClick={resetSearch} className={styles.link} to="products">
             Products
           </Link>
         </div>
         <div className={styles["search-field"]}>
           <input
             className={styles.input}
-            type='search'
-            placeholder='Search for items'
+            type="search"
+            placeholder="Search for items"
             value={searchValue ?? ""}
             onChange={handleSearch}
           />
           <img className={styles["search-icon"]} src={Search} />
         </div>
-        <Link onClick={resetSearch} to='cart'>
+        <Link onClick={resetSearch} to="cart">
           <img
             className={styles["shopping-icon"]}
             src={Shopping}
-            alt='Shopping Bag'
+            alt="Shopping Bag"
           />
         </Link>
       </header>

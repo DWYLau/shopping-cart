@@ -1,9 +1,4 @@
-import {
-  getByLabelText,
-  render,
-  screen,
-  fireEvent,
-} from "@testing-library/react"
+import { getByLabelText, render, screen } from "@testing-library/react"
 import Sidebar from "./Sidebar"
 import { describe, it, expect } from "vitest"
 import { BrowserRouter } from "react-router-dom"
@@ -35,18 +30,52 @@ describe("Sidebar component", () => {
     getByLabelText(container, "Men's Clothing")
   })
 
-  it("handleCheck gets clicked", () => {
-    const mockHandleCheck = vi.fn()
+  it("checkbox gets clicked and returns true", async () => {
+    const user = userEvent.setup()
 
     render(
       <BrowserRouter>
         <Sidebar getCategory={mockGetCategory} />
       </BrowserRouter>
     )
-    const checkbox = screen.getByRole("checkbox", { name: "Men's Clothing" })
-    fireEvent.change(checkbox)
 
-    expect(checkbox.checked).toBe(true)
-    expect(mockHandleCheck).toHaveBeenCalledTimes(1)
+    const checkbox = screen.getByRole("checkbox", {
+      name: "Men's Clothing",
+    }) as HTMLInputElement
+
+    await user.click(checkbox)
+
+    expect(checkbox.checked).toEqual(true)
+  })
+
+  it("should call getCategory if checkbox is clicked", async () => {
+    const mockGetCategory = vi.fn()
+    const user = userEvent.setup()
+
+    render(
+      <BrowserRouter>
+        <Sidebar getCategory={mockGetCategory} />
+      </BrowserRouter>
+    )
+
+    const checkbox = screen.getByRole("checkbox", {
+      name: "Men's Clothing",
+    }) as HTMLInputElement
+
+    await user.click(checkbox)
+
+    expect(mockGetCategory).toHaveBeenCalled()
+  })
+
+  it("should not call getCategory if checkbox is not clicked", async () => {
+    const mockGetCategory = vi.fn()
+
+    render(
+      <BrowserRouter>
+        <Sidebar getCategory={mockGetCategory} />
+      </BrowserRouter>
+    )
+
+    expect(mockGetCategory).not.toHaveBeenCalled()
   })
 })

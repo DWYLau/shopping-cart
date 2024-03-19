@@ -30,7 +30,7 @@ function Products() {
     if (quantity > 0) {
       product.number = quantity
       product.total = product.number * product.price
-      setCart(prevProducts => [...prevProducts, product])
+      setCart((prevProducts) => [...prevProducts, product])
       console.log(cart)
     } else {
       return
@@ -44,13 +44,13 @@ function Products() {
   useEffect(() => {
     function handleSearch() {
       if (searchValue && !categorized && products) {
-        const filteredProducts = products.filter(product =>
+        const filteredProducts = products.filter((product) =>
           product.title.toLowerCase().startsWith(searchValue.toLowerCase())
         )
         setSearchedProducts(filteredProducts)
       } else if (searchValue && categorized) {
         const filteredProducts = categorizedProductsRef.current.filter(
-          product =>
+          (product) =>
             product.title.toLowerCase().startsWith(searchValue.toLowerCase())
         )
         setSearchedProducts(filteredProducts)
@@ -60,7 +60,7 @@ function Products() {
     function handleCategory() {
       if (category && products) {
         const filteredProducts = products.filter(
-          product => product.category === category
+          (product) => product.category === category
         )
         categorizedProductsRef.current = filteredProducts
         setCategorizedProducts(filteredProducts)
@@ -73,10 +73,10 @@ function Products() {
 
     if (searching === false) {
       fetchData()
-        .then(data => {
+        .then((data) => {
           setProducts(data)
         })
-        .catch(error => setError(error))
+        .catch((error) => setError(error))
         .finally(() => setLoading(false))
     }
 
@@ -103,7 +103,7 @@ function Products() {
         <Sidebar getCategory={getCategory} />
         <div className={styles["grid-container"]}>
           {searching
-            ? searchedProducts.map(product => (
+            ? searchedProducts.map((product) => (
                 <Card
                   key={product.id}
                   product={product}
@@ -111,7 +111,7 @@ function Products() {
                   addCart={addCart}
                 />
               ))
-            : categorizedProducts.map(product => (
+            : categorizedProducts.map((product) => (
                 <Card
                   key={product.id}
                   product={product}
@@ -129,7 +129,7 @@ function Products() {
       <section className={styles["flex-container"]}>
         <Sidebar getCategory={getCategory} />
         <div className={styles["grid-container"]}>
-          {products.map(product => {
+          {products.map((product) => {
             return (
               <Card
                 product={product}

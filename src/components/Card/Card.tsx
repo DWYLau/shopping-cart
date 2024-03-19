@@ -12,17 +12,17 @@ interface Props {
 function Card({ product, handleQuantity, addCart }: Props) {
   return (
     <div key={product.id} className={styles.card}>
-      <img className={styles.image} src={product.image} alt='' />
+      <img className={styles.image} src={product.image} alt="" />
       <h3>{product.title}</h3>
 
       <div className={styles["rating-container"]}>
         <div className={styles.rating}>
-          <img className={styles.icon} src={star} alt='Rating' />
+          <img className={styles.icon} src={star} alt="Rating" />
           <h3>{product.rating.rate}</h3>
         </div>
 
         <div className={styles.likes}>
-          <img className={styles.icon} src={like} alt='Likes' />
+          <img className={styles.icon} src={like} alt="Likes" />
           <h3>{product.rating.count}</h3>
         </div>
 
@@ -32,7 +32,7 @@ function Card({ product, handleQuantity, addCart }: Props) {
       <div className={styles["button-container"]}>
         <input
           onChange={handleQuantity}
-          type='number'
+          type="number"
           min={0}
           max={100}
           defaultValue={0}
