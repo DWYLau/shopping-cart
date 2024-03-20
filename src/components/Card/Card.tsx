@@ -4,6 +4,7 @@ import like from "../../assets/icons/like.png"
 import { Product } from "../../utils/types"
 
 interface Props {
+  key: number
   product: Product
   handleQuantity: (event: React.ChangeEvent<HTMLInputElement>) => void
   addCart: (product: Product) => void
@@ -11,7 +12,7 @@ interface Props {
 
 function Card({ product, handleQuantity, addCart }: Props) {
   return (
-    <div key={product.id} className={styles.card}>
+    <div className={styles.card}>
       <img className={styles.image} src={product.image} alt="" />
       <h3>{product.title}</h3>
 

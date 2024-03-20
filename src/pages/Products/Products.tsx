@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, useCallback } from "react"
 import { fetchData } from "../../utils/api"
 import Sidebar from "../../components/Sidebar/Sidebar"
 import Card from "../../components/Card/Card"
@@ -8,7 +8,7 @@ import { useSearch } from "../../components/context/SearchContext"
 
 function Products() {
   const [products, setProducts] = useState<Product[]>([])
-  const [error, setError] = useState(null)
+  const [errorID, setErrorID] = useState<Error | null>(null)
   const [loading, setLoading] = useState(true)
   const [quantity, setQuantity] = useState(0)
   const [cart, setCart] = useState<Product[]>([])
@@ -41,59 +41,83 @@ function Products() {
     setCategory(value)
   }
 
-  useEffect(() => {
-    function handleSearch() {
-      if (searchValue && !categorized && products) {
-        const filteredProducts = products.filter((product) =>
+  // callbacks for useEffect
+
+  const fetchProducts = useCallback(async () => {
+    try {
+      if (searching === false) {
+        const data = await fetchData()
+        setProducts(data)
+        console.log(data)
+      }
+    } catch (error) {
+      setErrorID(error as Error)
+      console.log(errorID)
+    } finally {
+      setLoading(false)
+    }
+  }, [searching, errorID])
+
+  const handleSearch = useCallback(() => {
+    if (searchValue && !categorized) {
+      const filteredProducts = products.filter((product) =>
+        product.title.toLowerCase().startsWith(searchValue.toLowerCase())
+      )
+      console.log(filteredProducts)
+      setSearchedProducts(filteredProducts)
+    } else if (searchValue && categorized) {
+      const filteredProducts = categorizedProductsRef.current.filter(
+        (product) =>
           product.title.toLowerCase().startsWith(searchValue.toLowerCase())
-        )
-        setSearchedProducts(filteredProducts)
-      } else if (searchValue && categorized) {
-        const filteredProducts = categorizedProductsRef.current.filter(
-          (product) =>
-            product.title.toLowerCase().startsWith(searchValue.toLowerCase())
-        )
-        setSearchedProducts(filteredProducts)
-      }
+      )
+      setSearchedProducts(filteredProducts)
     }
+  }, [searchValue, categorized, products])
 
-    function handleCategory() {
-      if (category && products) {
-        const filteredProducts = products.filter(
-          (product) => product.category === category
-        )
-        categorizedProductsRef.current = filteredProducts
-        setCategorizedProducts(filteredProducts)
-        setCategorized(true)
-      } else {
-        categorizedProductsRef.current = []
-        setCategorized(false)
-      }
+  const handleCategory = useCallback(() => {
+    if (categorized) {
+      const filteredProducts = products.filter(
+        (product) => product.category === category
+      )
+      categorizedProductsRef.current = filteredProducts
+      setCategorizedProducts(filteredProducts)
+      setCategorized(true)
+    } else {
+      categorizedProductsRef.current = []
+      setCategorizedProducts([])
+      setCategorized(false)
     }
+  }, [categorized, products, category])
 
-    if (searching === false) {
-      fetchData()
-        .then((data) => {
-          setProducts(data)
-        })
-        .catch((error) => setError(error))
-        .finally(() => setLoading(false))
-    }
+  // useEffect hook
 
-    if (searchValue != "") {
+  useEffect(() => {
+    fetchProducts()
+  }, [fetchProducts])
+
+  useEffect(() => {
+    handleSearch()
+  }, [handleSearch])
+
+  useEffect(() => {
+    handleCategory()
+  }, [handleCategory])
+
+  useEffect(() => {
+    if (searchValue !== "") {
       setSearching(true)
-      handleSearch()
     } else {
       setSearching(false)
     }
+  }, [searchValue])
 
-    if (category != "") {
+  useEffect(() => {
+    if (category !== "") {
       setCategorized(true)
-      handleCategory()
     } else {
       setCategorized(false)
     }
-  }, [error, cart, searching, searchValue, products, category, categorized])
+  }, [category])
 
   if (loading) return <div>Loading</div>
 
@@ -132,6 +156,7 @@ function Products() {
           {products.map((product) => {
             return (
               <Card
+                key={product.id}
                 product={product}
                 handleQuantity={handleQuantity}
                 addCart={addCart}
