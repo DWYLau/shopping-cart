@@ -32,6 +32,7 @@ function Card({ product, handleQuantity, addCart }: Props) {
 
       <div className={styles["button-container"]}>
         <input
+          id="quantity-input"
           onChange={handleQuantity}
           type="number"
           min={0}

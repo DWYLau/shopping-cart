@@ -10,6 +10,7 @@ function Products() {
   const [products, setProducts] = useState<Product[]>([])
   const [errorID, setErrorID] = useState<Error | null>(null)
   const [loading, setLoading] = useState(true)
+  const [productID, setProductID] = useState(0)
   const [quantity, setQuantity] = useState(0)
   const [cart, setCart] = useState<Product[]>([])
   const [searching, setSearching] = useState(false)
@@ -27,13 +28,31 @@ function Products() {
   }
 
   function addCart(product: Product) {
-    if (quantity > 0) {
-      product.number = quantity
-      product.total = product.number * product.price
-      setCart((prevProducts) => [...prevProducts, product])
-      console.log(cart)
+    setProductID(product.id)
+    console.log(quantity)
+    console.log(product.id)
+    if (cart.some((prod) => prod.id === productID)) {
+      // If the product is already in the cart, update its quantity
+      setCart((prevCart) =>
+        prevCart.map((prod) => {
+          if (prod.id === productID && prod.number !== quantity) {
+            return { ...prod, number: quantity, total: quantity * prod.price }
+          }
+
+          return prod
+        })
+      )
     } else {
-      return
+      // If the product is not in the cart, add it with the current quantity
+      if (quantity > 0) {
+        const newProduct = {
+          ...product,
+          number: quantity,
+          total: quantity * product.price,
+        }
+        setCart((prevCart) => [...prevCart, newProduct])
+        console.log(cart)
+      }
     }
   }
 

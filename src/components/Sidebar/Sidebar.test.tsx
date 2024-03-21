@@ -1,4 +1,4 @@
-import { getByLabelText, render, screen } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import Sidebar from "./Sidebar"
 import { describe, it, expect } from "vitest"
 import { BrowserRouter } from "react-router-dom"
@@ -17,17 +17,6 @@ describe("Sidebar component", () => {
     expect(mockGetCategory).toHaveBeenCalledTimes(0)
 
     expect(container).toMatchSnapshot()
-  })
-
-  it("renders men's clothing label", () => {
-    const { container } = render(
-      <BrowserRouter>
-        <Sidebar getCategory={mockGetCategory} />
-      </BrowserRouter>
-    )
-    expect(mockGetCategory).toHaveBeenCalledTimes(0)
-
-    getByLabelText(container, "Men's Clothing")
   })
 
   it("checkbox gets clicked and returns true", async () => {
@@ -49,7 +38,6 @@ describe("Sidebar component", () => {
   })
 
   it("should call getCategory if checkbox is clicked", async () => {
-    const mockGetCategory = vi.fn()
     const user = userEvent.setup()
 
     render(

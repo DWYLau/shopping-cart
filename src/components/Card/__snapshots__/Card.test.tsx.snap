@@ -1,0 +1,67 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Card component > renders correctly 1`] = `
+<div>
+  <div
+    class="_card_1f2933"
+  >
+    <img
+      alt=""
+      class="_image_1f2933"
+      src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+    />
+    <h3>
+      Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops
+    </h3>
+    <div
+      class="_rating-container_1f2933"
+    >
+      <div
+        class="_rating_1f2933"
+      >
+        <img
+          alt="Rating"
+          class="_icon_1f2933"
+          src="/src/assets/icons/star.png"
+        />
+        <h3>
+          3.9
+        </h3>
+      </div>
+      <div
+        class="_likes_1f2933"
+      >
+        <img
+          alt="Likes"
+          class="_icon_1f2933"
+          src="/src/assets/icons/like.png"
+        />
+        <h3>
+          120
+        </h3>
+      </div>
+      <h3>
+        £
+        109.95
+      </h3>
+    </div>
+    <div
+      class="_button-container_1f2933"
+    >
+      <input
+        class="_input-number_1f2933"
+        id="quantity-input"
+        max="100"
+        min="0"
+        type="number"
+        value="0"
+      />
+      <button
+        class="_cart-button_1f2933"
+      >
+        Add To Cart
+      </button>
+    </div>
+  </div>
+</div>
+`;
