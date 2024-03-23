@@ -8,11 +8,11 @@ import { useSearch } from "../../components/context/SearchContext"
 
 function Products() {
   const [products, setProducts] = useState<Product[]>([])
+  const [product, setProduct] = useState<Product | null>()
   const [errorID, setErrorID] = useState<Error | null>(null)
   const [loading, setLoading] = useState(true)
-  const [productID, setProductID] = useState(0)
-  const [quantity, setQuantity] = useState(0)
-  const [cart, setCart] = useState<Product[]>([])
+  const [shoppingCart, setShoppingCart] = useState<Product[]>([])
+  const [finalCart, setFinalCart] = useState<Product[]>([])
   const [searching, setSearching] = useState(false)
   const [categorized, setCategorized] = useState(false)
   const [searchedProducts, setSearchedProducts] = useState<Product[]>([])
@@ -22,37 +22,47 @@ function Products() {
 
   const categorizedProductsRef = useRef<Product[]>([])
 
-  function handleQuantity(event: React.ChangeEvent<HTMLInputElement>): void {
-    const newValue: number = parseInt(event.target.value, 10)
-    setQuantity(newValue)
+  function handleQuantity(
+    event: React.ChangeEvent<HTMLInputElement>,
+    item: Product
+  ): void {
+    const value: number = parseInt(event.target.value, 10)
+    console.log(value)
+    if (value > 0) {
+      const quantifiedProduct = { ...item, number: value }
+      console.log("QUANTIFIED", quantifiedProduct)
+      setProduct(quantifiedProduct)
+    } else if (value === 0) {
+      console.log("PRODUCT IS NOW NULL")
+      setProduct(null)
+    }
   }
 
-  function addCart(product: Product) {
-    setProductID(product.id)
-    console.log(quantity)
-    console.log(product.id)
-    if (cart.some((prod) => prod.id === productID)) {
-      // If the product is already in the cart, update its quantity
-      setCart((prevCart) =>
-        prevCart.map((prod) => {
-          if (prod.id === productID && prod.number !== quantity) {
-            return { ...prod, number: quantity, total: quantity * prod.price }
-          }
+  function addCart(item: Product) {
+    console.log("PRODUCT", product)
+    console.log("ITEM", item)
+    if (product && product.title !== item.title) {
+      return
+    } else if (product === null) {
+      return
+    } else if (product) {
+      setShoppingCart((prevItems) => [...prevItems, product])
+    }
 
-          return prod
-        })
-      )
-    } else {
-      // If the product is not in the cart, add it with the current quantity
-      if (quantity > 0) {
-        const newProduct = {
-          ...product,
-          number: quantity,
-          total: quantity * product.price,
+    if (shoppingCart.some((product) => product.title === item.title)) {
+      const productMap = shoppingCart.reduce((map, item) => {
+        const existingProduct = map.get(item.id)
+        if (existingProduct) {
+          existingProduct.number += item.number
+        } else {
+          map.set(item.id, { ...item })
         }
-        setCart((prevCart) => [...prevCart, newProduct])
-        console.log(cart)
-      }
+        return map
+      }, new Map())
+
+      const uniqueCart = [...productMap.values()]
+      console.log("FINAL", uniqueCart)
+      setFinalCart(uniqueCart)
     }
   }
 

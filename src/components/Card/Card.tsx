@@ -6,7 +6,10 @@ import { Product } from "../../utils/types"
 interface Props {
   key: number
   product: Product
-  handleQuantity: (event: React.ChangeEvent<HTMLInputElement>) => void
+  handleQuantity: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    product: Product
+  ) => void
   addCart: (product: Product) => void
 }
 
@@ -33,7 +36,7 @@ function Card({ product, handleQuantity, addCart }: Props) {
       <div className={styles["button-container"]}>
         <input
           id="quantity-input"
-          onChange={handleQuantity}
+          onChange={(event) => handleQuantity(event, product)}
           type="number"
           min={0}
           max={100}
