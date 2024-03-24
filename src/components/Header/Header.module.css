@@ -127,6 +127,12 @@
   color: black;
 }
 
+.cart-info {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
 .shopping-icon {
   cursor: pointer;
   height: 40px;
@@ -141,6 +147,27 @@
   background-color: #c4dfdf;
   box-shadow: 0 0 1rem #c4dfdf;
   color: black;
+}
+
+.cart-number {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  background-color: yellow;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  color: black;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 1.6rem;
+  transition: ease 0.5s;
+}
+
+.cart-number:hover {
+  cursor: pointer;
+  box-shadow: 0 0 1rem #c4dfdf;
 }
 
 .second-header {

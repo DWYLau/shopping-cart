@@ -2,6 +2,7 @@ import { useEffect, useState, useRef, useCallback } from "react"
 import { fetchData } from "../../utils/api"
 import Sidebar from "../../components/Sidebar/Sidebar"
 import Card from "../../components/Card/Card"
+import Load from "../../components/Load/Load"
 import styles from "./Products.module.css"
 import { Product } from "../../utils/types"
 import { useSearch } from "../../components/context/SearchContext"
@@ -124,7 +125,7 @@ function Products() {
   useEffect(() => {
     if (cart && cart.length !== 0) {
       setShoppingCart(cart)
-    }
+    } // eslint-disable-next-line
   }, [])
 
   useEffect(() => {
@@ -159,7 +160,7 @@ function Products() {
     }
   }, [category])
 
-  if (loading) return <div>Loading</div>
+  if (loading) return <Load />
 
   if (searching || categorized) {
     return (

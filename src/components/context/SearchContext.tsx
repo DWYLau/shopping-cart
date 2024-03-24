@@ -28,4 +28,5 @@ function SearchProvider({ children }: SearchProviderProps): JSX.Element {
   )
 }
 
+// eslint-disable-next-line
 export { useSearch, SearchProvider }

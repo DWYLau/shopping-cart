@@ -65,7 +65,9 @@ function Sidebar({ getCategory }: Props) {
         />
         Electronics
       </label>
-      <button onClick={handleReset}>Reset</button>
+      <button className={styles.button} onClick={handleReset}>
+        Reset
+      </button>
     </div>
   )
 }

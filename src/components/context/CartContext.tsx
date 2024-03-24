@@ -29,4 +29,5 @@ function CartProvider({ children }: CartProviderProps): JSX.Element {
   )
 }
 
+// eslint-disable-next-line
 export { useCart, CartProvider }

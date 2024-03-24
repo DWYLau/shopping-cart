@@ -1,4 +1,6 @@
+import styles from "./Cart.module.css"
 import { useEffect } from "react"
+
 import { useCart } from "../../components/context/CartContext"
 
 function Cart() {
@@ -8,7 +10,12 @@ function Cart() {
     console.log(cart)
   }, [cart])
 
-  return <div>Cart</div>
+  return (
+    <div className={styles["flex-container"]}>
+      <div>Summary</div>
+      <div>Total Section</div>
+    </div>
+  )
 }
 
 export default Cart
