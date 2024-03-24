@@ -5,20 +5,22 @@ import Card from "../../components/Card/Card"
 import styles from "./Products.module.css"
 import { Product } from "../../utils/types"
 import { useSearch } from "../../components/context/SearchContext"
+import { useCart } from "../../components/context/CartContext"
 
 function Products() {
   const [products, setProducts] = useState<Product[]>([])
   const [product, setProduct] = useState<Product | null>()
+  const [item, setItem] = useState<Product | null>()
   const [errorID, setErrorID] = useState<Error | null>(null)
   const [loading, setLoading] = useState(true)
   const [shoppingCart, setShoppingCart] = useState<Product[]>([])
-  const [finalCart, setFinalCart] = useState<Product[]>([])
   const [searching, setSearching] = useState(false)
   const [categorized, setCategorized] = useState(false)
   const [searchedProducts, setSearchedProducts] = useState<Product[]>([])
   const [categorizedProducts, setCategorizedProducts] = useState<Product[]>([])
   const [category, setCategory] = useState<string | null>("")
   const { searchValue } = useSearch()
+  const { cart, setCart } = useCart()
 
   const categorizedProductsRef = useRef<Product[]>([])
 
@@ -27,42 +29,22 @@ function Products() {
     item: Product
   ): void {
     const value: number = parseInt(event.target.value, 10)
-    console.log(value)
     if (value > 0) {
       const quantifiedProduct = { ...item, number: value }
-      console.log("QUANTIFIED", quantifiedProduct)
       setProduct(quantifiedProduct)
     } else if (value === 0) {
-      console.log("PRODUCT IS NOW NULL")
       setProduct(null)
     }
   }
 
   function addCart(item: Product) {
-    console.log("PRODUCT", product)
-    console.log("ITEM", item)
+    setItem(item)
     if (product && product.title !== item.title) {
       return
     } else if (product === null) {
       return
     } else if (product) {
       setShoppingCart((prevItems) => [...prevItems, product])
-    }
-
-    if (shoppingCart.some((product) => product.title === item.title)) {
-      const productMap = shoppingCart.reduce((map, item) => {
-        const existingProduct = map.get(item.id)
-        if (existingProduct) {
-          existingProduct.number += item.number
-        } else {
-          map.set(item.id, { ...item })
-        }
-        return map
-      }, new Map())
-
-      const uniqueCart = [...productMap.values()]
-      console.log("FINAL", uniqueCart)
-      setFinalCart(uniqueCart)
     }
   }
 
@@ -118,7 +100,32 @@ function Products() {
     }
   }, [categorized, products, category])
 
-  // useEffect hook
+  const makeUniqueCart = useCallback(() => {
+    if (item) {
+      if (shoppingCart.some((product) => product.title === item.title)) {
+        const productMap = shoppingCart.reduce((map, item) => {
+          const existingProduct = map.get(item.id)
+          if (existingProduct) {
+            existingProduct.number += item.number
+          } else {
+            map.set(item.id, { ...item })
+          }
+          return map
+        }, new Map())
+
+        const uniqueCart = [...productMap.values()]
+        setCart(uniqueCart)
+      }
+    }
+  }, [shoppingCart, item, setCart])
+
+  // useEffect hooks
+
+  useEffect(() => {
+    if (cart && cart.length !== 0) {
+      setShoppingCart(cart)
+    }
+  }, [])
 
   useEffect(() => {
     fetchProducts()
@@ -131,6 +138,10 @@ function Products() {
   useEffect(() => {
     handleCategory()
   }, [handleCategory])
+
+  useEffect(() => {
+    makeUniqueCart()
+  }, [makeUniqueCart])
 
   useEffect(() => {
     if (searchValue !== "") {

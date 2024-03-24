@@ -66,4 +66,27 @@ describe("Card component", () => {
     expect(input.id).toBe("quantity-input")
     expect(input.value).toBe("5")
   })
+
+  it("should call addCart function when button is clicked", async () => {
+    const user = userEvent.setup()
+
+    render(
+      <BrowserRouter>
+        <Card
+          key={product.id}
+          product={product}
+          handleQuantity={mockHandleQuantity}
+          addCart={mockAddCart}
+        />
+      </BrowserRouter>
+    )
+
+    const button = screen.getByRole("button", {
+      name: "Add To Cart",
+    }) as HTMLInputElement
+
+    await user.click(button)
+
+    expect(mockAddCart).toHaveBeenCalled()
+  })
 })
