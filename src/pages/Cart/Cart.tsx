@@ -6,12 +6,9 @@ import CartCard from "../../components/CartCard/CartCard"
 
 function Cart() {
   const [total, setTotal] = useState(0)
-  const [editQuantity, setEditQuantity] = useState(false)
   const { cart, setCart } = useCart()
 
-  function handleDelete() {}
-
-  function handleQuantity() {}
+  // function handleDelete() {}
 
   useEffect(() => {
     function calculateTotal() {
@@ -30,7 +27,7 @@ function Cart() {
       }
     }
     calculateTotal()
-  }, [])
+  }, [cart])
 
   if (!cart)
     return (
@@ -47,7 +44,10 @@ function Cart() {
       <section className={styles.summary}>
         <h1 className={styles["section-header"]}>Shopping Cart</h1>
         <div className={styles["card-container"]}>
-          {cart && cart.map((product) => <CartCard product={product} />)}
+          {cart &&
+            cart.map((product) => (
+              <CartCard key={product.id} product={product} />
+            ))}
         </div>
       </section>
       <section className={styles["total-summary"]}>

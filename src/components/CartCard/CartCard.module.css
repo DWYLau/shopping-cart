@@ -37,6 +37,7 @@
 
 .button-container {
   display: flex;
+  align-content: center;
   gap: 1rem;
 }
 
@@ -63,4 +64,54 @@
   gap: 1rem;
   margin-left: 3rem;
   margin-top: 1.5rem;
+}
+
+.quantity-container {
+  display: flex;
+  gap: 0.1rem;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  background-color: #ccff00;
+  width: 40%;
+  border: 2px solid #f8f8f4;
+  border-radius: 8px;
+}
+
+.quantity-container:hover {
+  border: 2px solid #5f9ea0;
+}
+
+.confirm-button {
+  cursor: pointer;
+  padding: 0.6rem;
+  font-family: system-ui, sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 1.1;
+  background-color: #ccff00;
+  min-height: 100%;
+  border: 2px solid #ccff00;
+  border-radius: 8px;
+}
+
+.confirm-button:hover {
+  border: 2px solid #5f9ea0;
+}
+
+.input-number {
+  border: none;
+  background-color: #d3d3d3;
+  border: 2px solid #ccff00;
+  border-radius: 8px;
+  font-size: 1rem;
+  padding: 0.4rem;
+  height: 2rem;
+  width: 19%;
+  height: 20%;
+}
+
+.input-number:hover {
+  border: 2px solid #5f9ea0;
+  background-color: #b2beb5;
 }

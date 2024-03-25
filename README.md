@@ -52,11 +52,10 @@ Shopping Cart application for The Odin Project
 - Photo by Pixabay: https://www.pexels.com/photo/man-wearing-black-hat-and-black-coat-157675/
 - Photo by Bolarinwa Olasunkanmi : https://www.pexels.com/photo/fashionable-man-posing-on-a-city-street-13939474/
 
-## Bugs to fix
+## Bugs to fix / Functions to add
 
 - Header positioning
 - Delete functionality
-- Change quantity functionality
 
 ## Live Preview
 

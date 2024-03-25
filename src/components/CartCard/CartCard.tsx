@@ -1,11 +1,49 @@
+import { useState } from "react"
 import { Product } from "../../utils/types"
 import styles from "./CartCard.module.css"
+import { useCart } from "../context/CartContext"
 
 interface Props {
   product: Product
 }
 
 function CartCard({ product }: Props) {
+  const [editQuantity, setEditQuantity] = useState(false)
+  const [editItem, setEditItem] = useState<Product | null>(null)
+  const { cart, setCart } = useCart()
+
+  function changeEditStatus() {
+    setEditQuantity(true)
+  }
+
+  function changeQuantity(
+    event: React.ChangeEvent<HTMLInputElement>,
+    item: Product
+  ): void {
+    const quantity = parseInt(event.target.value, 10)
+    setEditItem({ ...item, number: quantity })
+  }
+
+  function confirmQuantity() {
+    if (editItem) {
+      if (cart && cart.some((product) => product.title === editItem.title)) {
+        const updatedCart = cart.map((product) => {
+          if (editItem.number && product.title === editItem.title) {
+            return {
+              ...product,
+              number: editItem.number,
+              total: editItem.number * product.price,
+            }
+          } else {
+            return product
+          }
+        })
+        setCart(updatedCart)
+        setEditQuantity(false)
+      }
+    }
+  }
+
   return (
     <div className={styles.card}>
       <img className={styles.image} src={product.image} alt="Product Image" />
@@ -16,7 +54,29 @@ function CartCard({ product }: Props) {
           <h3>Price: £{product.price.toFixed(2)}</h3>
         </div>
         <div className={styles["button-container"]}>
-          <button className={styles.button}>Change Quantity</button>
+          {!editQuantity ? (
+            <button onClick={changeEditStatus} className={styles.button}>
+              Change Quantity
+            </button>
+          ) : (
+            <div className={styles["quantity-container"]}>
+              <button
+                onClick={confirmQuantity}
+                className={styles["confirm-button"]}
+              >
+                Confirm
+              </button>
+              <input
+                onChange={(event) => changeQuantity(event, product)}
+                className={styles["input-number"]}
+                type="number"
+                id="quantity"
+                name="quantity"
+                defaultValue={product.number}
+              />
+            </div>
+          )}
+
           <button className={styles.button}>Remove</button>
         </div>
       </div>
