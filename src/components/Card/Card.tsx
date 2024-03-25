@@ -30,7 +30,7 @@ function Card({ product, handleQuantity, addCart }: Props) {
           <h3>{product.rating.count}</h3>
         </div>
 
-        <h3>£{product.price}</h3>
+        <h3>£{product.price.toFixed(2)}</h3>
       </div>
 
       <div className={styles["button-container"]}>

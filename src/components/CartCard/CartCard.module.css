@@ -1,0 +1,66 @@
+.card {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 2px solid #c0c0c0;
+  font-family: system-ui, sans-serif;
+  font-size: 1.5rem;
+}
+
+.image {
+  background-color: white;
+  padding: 1rem;
+  height: 25vh;
+  width: 10vw;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 27vw;
+  gap: 1rem;
+  margin-left: 2rem;
+}
+
+.extra-info {
+  display: flex;
+  gap: 1rem;
+}
+
+.quantity {
+  padding-right: 1rem;
+  border-right: 2px solid #c0c0c0;
+}
+
+.button-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.button {
+  cursor: pointer;
+  padding: 1rem;
+  font-family: system-ui, sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 1.1;
+  border: 2px solid #f8f8f4;
+  border-radius: 8px;
+  background-color: #ccff00;
+  min-height: 100%;
+}
+
+.button:hover {
+  border: 2px solid #5f9ea0;
+}
+
+.total {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-left: 3rem;
+  margin-top: 1.5rem;
+}

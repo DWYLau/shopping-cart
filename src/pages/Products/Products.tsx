@@ -31,7 +31,11 @@ function Products() {
   ): void {
     const value: number = parseInt(event.target.value, 10)
     if (value > 0) {
-      const quantifiedProduct = { ...item, number: value }
+      const quantifiedProduct = {
+        ...item,
+        number: value,
+        total: value * item.price,
+      }
       setProduct(quantifiedProduct)
     } else if (value === 0) {
       setProduct(null)
@@ -60,7 +64,6 @@ function Products() {
       if (searching === false) {
         const data = await fetchData()
         setProducts(data)
-        console.log(data)
       }
     } catch (error) {
       setErrorID(error as Error)
@@ -108,6 +111,8 @@ function Products() {
           const existingProduct = map.get(item.id)
           if (existingProduct) {
             existingProduct.number += item.number
+            existingProduct.total =
+              existingProduct.number * existingProduct.price
           } else {
             map.set(item.id, { ...item })
           }
