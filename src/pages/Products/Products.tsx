@@ -165,6 +165,8 @@ function Products() {
     }
   }, [category])
 
+  // rendering
+
   if (loading) return <Load />
 
   if (searching || categorized) {
