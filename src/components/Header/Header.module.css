@@ -197,3 +197,13 @@
   float: left;
   letter-spacing: 2px;
 }
+
+@media (-webkit-device-pixel-ratio: 1.25) {
+  .search-field {
+    height: 50%;
+  }
+
+  .header {
+    padding: 0.3rem;
+  }
+}

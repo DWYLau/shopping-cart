@@ -82,3 +82,9 @@
   border: 2px solid #5f9ea0;
   background-color: #b2beb5;
 }
+
+@media (-webkit-device-pixel-ratio: 1.25) {
+  .card h3 {
+    font-size: 0.9rem;
+  }
+}

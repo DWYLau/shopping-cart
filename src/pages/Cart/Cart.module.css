@@ -92,3 +92,13 @@
 .checkout-button:hover {
   border: 2px solid #5f9ea0;
 }
+
+@media (-webkit-device-pixel-ratio: 1.25) {
+  .total-summary {
+    height: 25vh;
+  }
+
+  .checkout-button {
+    width: 32%;
+  }
+}
