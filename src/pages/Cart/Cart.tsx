@@ -6,9 +6,7 @@ import CartCard from "../../components/CartCard/CartCard"
 
 function Cart() {
   const [total, setTotal] = useState(0)
-  const { cart, setCart } = useCart()
-
-  // function handleDelete() {}
+  const { cart } = useCart()
 
   useEffect(() => {
     function calculateTotal() {
@@ -27,9 +25,10 @@ function Cart() {
       }
     }
     calculateTotal()
+    console.log(cart)
   }, [cart])
 
-  if (!cart)
+  if (cart && cart.length === 0)
     return (
       <div className={styles["notice-container"]}>
         <h1 className={styles.title}>Your Shoppit cart is empty.</h1>
@@ -39,30 +38,32 @@ function Cart() {
       </div>
     )
 
-  return (
-    <div className={styles["flex-container"]}>
-      <section className={styles.summary}>
-        <h1 className={styles["section-header"]}>Shopping Cart</h1>
-        <div className={styles["card-container"]}>
-          {cart &&
-            cart.map((product) => (
-              <CartCard key={product.id} product={product} />
-            ))}
-        </div>
-      </section>
-      <section className={styles["total-summary"]}>
-        <div className={styles["section-header"]}>
-          Subtotal ({cart.length} items)
-        </div>
-        <div className={styles.info}>
-          <h1>Total: £{total.toFixed(2)}</h1>
-          <Link className={styles["checkout-button"]} to="/checkout">
-            Checkout
-          </Link>
-        </div>
-      </section>
-    </div>
-  )
+  if (cart && cart.length > 0) {
+    return (
+      <div className={styles["flex-container"]}>
+        <section className={styles.summary}>
+          <h1 className={styles["section-header"]}>Shopping Cart</h1>
+          <div className={styles["card-container"]}>
+            {cart &&
+              cart.map((product) => (
+                <CartCard key={product.id} product={product} />
+              ))}
+          </div>
+        </section>
+        <section className={styles["total-summary"]}>
+          <div className={styles["section-header"]}>
+            Subtotal ({cart.length} items)
+          </div>
+          <div className={styles.info}>
+            <h1>Total: £{total.toFixed(2)}</h1>
+            <Link className={styles["checkout-button"]} to="/checkout">
+              Checkout
+            </Link>
+          </div>
+        </section>
+      </div>
+    )
+  }
 }
 
 export default Cart

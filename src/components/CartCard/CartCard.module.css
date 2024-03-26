@@ -67,15 +67,15 @@
 }
 
 .quantity-container {
-  display: flex;
+  display: inline-flex;
   gap: 0.1rem;
   align-items: center;
   align-content: center;
   justify-content: center;
   background-color: #ccff00;
-  width: 40%;
   border: 2px solid #f8f8f4;
   border-radius: 8px;
+  width: 33%;
 }
 
 .quantity-container:hover {
@@ -93,10 +93,6 @@
   min-height: 100%;
   border: 2px solid #ccff00;
   border-radius: 8px;
-}
-
-.confirm-button:hover {
-  border: 2px solid #5f9ea0;
 }
 
 .input-number {

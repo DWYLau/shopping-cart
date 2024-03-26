@@ -49,7 +49,15 @@ function Header() {
               alt="Shopping Bag"
             />
           </Link>
-          {cart && <div className={styles["cart-number"]}>{cart.length}</div>}
+          {cart ? (
+            <Link to="/cart" className={styles["cart-number"]}>
+              {cart.length}
+            </Link>
+          ) : (
+            <Link to="/cart" className={styles["cart-number"]}>
+              0
+            </Link>
+          )}
         </div>
       </header>
 

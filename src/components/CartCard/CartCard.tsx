@@ -44,6 +44,16 @@ function CartCard({ product }: Props) {
     }
   }
 
+  function handleDelete(item: Product) {
+    if (cart) {
+      const index = cart.findIndex((product) => product.title === item.title)
+      if (index !== -1) {
+        const updatedCart = [...cart.slice(0, index), ...cart.slice(index + 1)]
+        setCart(updatedCart)
+      }
+    }
+  }
+
   return (
     <div className={styles.card}>
       <img className={styles.image} src={product.image} alt="Product Image" />
@@ -77,7 +87,12 @@ function CartCard({ product }: Props) {
             </div>
           )}
 
-          <button className={styles.button}>Remove</button>
+          <button
+            onClick={() => handleDelete(product)}
+            className={styles.button}
+          >
+            Remove
+          </button>
         </div>
       </div>
       <div className={styles.total}>
