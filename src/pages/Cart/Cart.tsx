@@ -25,10 +25,9 @@ function Cart() {
       }
     }
     calculateTotal()
-    console.log(cart)
   }, [cart])
 
-  if (cart && cart.length === 0)
+  if ((cart && cart.length === 0) || cart === null)
     return (
       <div className={styles["notice-container"]}>
         <h1 className={styles.title}>Your Shoppit cart is empty.</h1>
