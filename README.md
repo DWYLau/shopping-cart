@@ -54,4 +54,4 @@ Shopping Cart application for The Odin Project
 
 ## Live Preview
 
-- To be added
+https://dl-shopping-cart.netlify.app
