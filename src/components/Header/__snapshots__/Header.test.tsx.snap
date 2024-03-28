@@ -41,15 +41,25 @@ exports[`Header component > renders correctly 1`] = `
         src="/src/assets/icons/search.svg"
       />
     </div>
-    <a
-      href="/cart"
+    <div
+      class="_cart-info_63c2ea"
     >
-      <img
-        alt="Shopping Bag"
-        class="_shopping-icon_63c2ea"
-        src="/src/assets/icons/shopping-bag.svg"
-      />
-    </a>
+      <a
+        href="/cart"
+      >
+        <img
+          alt="Shopping Bag"
+          class="_shopping-icon_63c2ea"
+          src="/src/assets/icons/shopping-bag.svg"
+        />
+      </a>
+      <a
+        class="_cart-number_63c2ea"
+        href="/cart"
+      >
+        0
+      </a>
+    </div>
   </header>
   <header
     class="_second-header_63c2ea"

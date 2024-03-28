@@ -48,7 +48,9 @@ exports[`Sidebar component > renders correctly 1`] = `
       />
       Electronics
     </label>
-    <button>
+    <button
+      class="_button_0bec62"
+    >
       Reset
     </button>
   </div>
