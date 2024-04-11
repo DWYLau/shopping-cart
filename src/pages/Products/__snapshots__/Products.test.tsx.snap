@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Product component > renders correctly 1`] = `
+<div>
+  <div
+    class="_container_eb1f5f"
+  >
+    <div
+      class="_loader_eb1f5f"
+    />
+  </div>
+</div>
+`;
